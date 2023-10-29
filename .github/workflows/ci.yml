@@ -13,5 +13,5 @@ jobs:
         # if: ${{ contains(cypress.config.js,projectId) }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-        # with:
-        # command: npm run test:cloud
+        with:
+          command: npm run test:cloud

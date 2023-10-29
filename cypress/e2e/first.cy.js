@@ -123,7 +123,7 @@ describe("testing the website", () => {
 
     cy.get(".success").should("be.visible");
   });
-  it("sucessfully submits the form using 'cy.containns()'", () => {
+  it("sucessfully submits the form using 'cy.contains()'", () => {
     cy.contains("button", "Send").click();
     cy.get(".error").should("be.visible");
   });
