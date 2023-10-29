@@ -21,8 +21,8 @@ Cypress.Commands.add("fillMandatoryFields", () => {
 // -- This is a parent command --
 //
 // Cypress.Commands.add('login', (email, password) => { ... })
-//fillMandatoryFieldsWithParam
-// -- custom command to fill required fields --
+//
+// -- custom command to fill required fields using parameters --
 Cypress.Commands.add("fillMandatoryFieldsWithParam", (data) => {
   cy.get("#firstName").type(data.firstName);
   cy.get("#lastName").type(data.lastName);

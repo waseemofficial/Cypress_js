@@ -175,7 +175,7 @@ describe("testing the website", () => {
 
     cy.get("#phone-checkbox").uncheck().should("not.be.checked");
   });
-  it.only("check both checkboxes and then uncheck the last one using loop", () => {
+  it("check both checkboxes and then uncheck the last one using loop", () => {
     //cy.get("input[type='checkbox']").each((item) => {});
     cy.get("input[type='checkbox']")
       .check()
@@ -184,4 +184,42 @@ describe("testing the website", () => {
       .uncheck()
       .should("not.be.checked");
   });
+  it("select a file from fixtures folder", () => {
+    //cy.get('#file-upload')
+    //cy.get("input[type='file']").selectFile("cypress/fixtures/example.txt").should((input) => {console.log(input);});
+    cy.get("input[type='file']")
+      .selectFile("cypress/fixtures/example.txt")
+      .should((input) => {
+        expect(input[0].files[0].name).to.equal("example.txt");
+      });
+  });
+  it("selecting a file simulating a drag-n-drop", () => {
+    cy.get("input[type='file']")
+      .selectFile("cypress/fixtures/example.txt", { action: "drag-drop" })
+      .should((input) => {
+        expect(input[0].files[0].name).to.equal("example.txt");
+      });
+  });
+  it("select a file using a fixture to which an alies was given", () => {
+    cy.fixture("example.txt").as("sampleFile");
+    cy.get("input[type='file']")
+      .selectFile("@sampleFile")
+      .should((input) => {
+        expect(input[0].files[0].name).to.equal("example.txt");
+      });
+  });
+  it("verifies that the privacy policy page open in another tab without the need for a click", () => {
+    cy.contains("a", "Privacy Policy")
+      .should("have.attr", "href", "privacy.html")
+      .and("have.attr", "target", "_blank");
+  });
+  it("access the privacy policy page by removing the tatget,then click on the link", () => {
+    cy.contains("a", "Privacy Policy").invoke("removeAttr", "target").click();
+    cy.contains("h1", "TAT CSC - Privacy Policy");
+    cy.url().should(
+      "eq",
+      "http://tat-csc.s3.sa-east-1.amazonaws.com/privacy.html"
+    );
+  });
+  //it.only("independently test the privacy policy page", () => {});
 });
