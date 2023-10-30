@@ -63,3 +63,8 @@
         </div>
     </div>
 </div>
+
+
+[![cypress](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/xvvhay/develop&style=flat&logo=cypress)](https://cloud.cypress.io/projects/xvvhay/runs)
+
+[![cypress](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/count/xvvhay/develop&style=flat&logo=cypress)](https://cloud.cypress.io/projects/xvvhay/runs)
