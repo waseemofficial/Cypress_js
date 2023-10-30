@@ -41,4 +41,50 @@ describe("Advance cypress methods", () => {
       .and("be.lt", 13)
       .and("be.gt", 11);
   });
+  // using lowdash liberary of Cypress
+
+  Cypress._.times(5, (num) => {
+    it("run policy check " + num + " times", () => {
+      cy.visit("http://tat-csc.s3.sa-east-1.amazonaws.com/privacy.html");
+      cy.contains("h1", "TAT CSC - Privacy Policy").should("be.visible");
+      cy.contains("p", "Talking About Testing").should("be.visible");
+    });
+    num += 1;
+  });
+  it("display and hide the success and error message using .invoke()", () => {
+    cy.get(".success")
+      .should("not.be.visible")
+      .invoke("show")
+      .should("be.visible")
+      .and("contain", "Message success")
+      .invoke("hide")
+      .should("not.be.visible");
+    cy.get(".error")
+      .should("not.be.visible")
+      .invoke("show")
+      .should("be.visible")
+      .and("contain", "Validate the required fields!")
+      .invoke("hide")
+      .should("not.be.visible");
+  });
+  it("fills in the text area field using the invoke command", () => {
+    cy.get("#open-text-area")
+      .invoke("val", "some text should be put here")
+      .should("have.value", "some text should be put here");
+  });
+
+  //https://dev.to/muratkeremozcan/crud-api-testing-a-deployed-service-with-cypress-using-cy-api-spok-cypress-data-session-cypress-each-4mlg
+
+  /**it.only("chek should be a string", () => {
+   *
+   * });
+   * */
+  it("makes an HTTP Request", () => {
+    cy.request("https://tat-csc.s3.sa-east-1.amazonaws.com/index.html")
+      .as("getRequest")
+      .its("status")
+      .should("be.equal", 200);
+    cy.get("@getRequest").its("statusText").should("be.equal", "OK");
+    cy.get("@getRequest").its("body").should("include", "TAT CSC");
+  });
 });
