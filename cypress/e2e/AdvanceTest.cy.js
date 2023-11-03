@@ -87,4 +87,12 @@ describe("Advance cypress methods", () => {
     cy.get("@getRequest").its("statusText").should("be.equal", "OK");
     cy.get("@getRequest").its("body").should("include", "TAT CSC");
   });
+  it.only("fills in the text area and take a screenshot", () => {
+    cy.screenshot("page");
+    cy.get("#product").select(1).first().screenshot("product");
+    cy.get("#open-text-area")
+      .invoke("val", "some text should be put here")
+      .should("have.value", "some text should be put here")
+      .screenshot("text area");
+  });
 });
