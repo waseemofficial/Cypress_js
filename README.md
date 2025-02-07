@@ -116,7 +116,7 @@ Run the following command to install all required dependencies:
 ```
 ## Project Structure
 
-```mermaid
+```
 Cypress_js/
 ├── cypress/
 │   ├── e2e/                       # Test specs
