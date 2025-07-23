@@ -1,7 +1,7 @@
 describe("test_1",()=>{
 it("open google.com",()=>{
-cy.visit("www.google.com")
+cy.visit("https://example.cypress.io/")
 #cy.get(".g").type("cypress.io tutorial")
-cy.url("www.google.com").to.equal(""www.google.com"")
+cy.url("https://example.cypress.io/").to.equal("https://example.cypress.io/")
 })
 })
